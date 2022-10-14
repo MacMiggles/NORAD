@@ -20,26 +20,62 @@ var points = [
 canvas.setLineColor(1,0,1);                                         # set the line color to red
 canvas.curve(points, true);                                         # connect the points in the array
 
+# paint bases 
+
+canvas.setLineColor(0,1,1);
+
+canvas.circle(x * 9 , y * 54, 9);
+canvas.circle(x * 9 , y * 54, 4);
+canvas.text( x * 10 , y * 56 , "Base-1");
+
+canvas.circle(x * 15 , y * 70, 9);
+canvas.circle(x * 15 , y * 70, 4);
+canvas.text( x * 16 , y * 72 , "Base-2");
+
+canvas.circle(x * 76 , y * 57, 9);
+canvas.circle(x * 76 , y * 57, 4);
+canvas.text( x * 77 , y * 59 , "Base-3");
+
+canvas.circle(x * 45 , y * 75, 9);
+canvas.circle(x * 45 , y * 75, 4);
+canvas.text( x * 46 , y * 77, "Base-4");
+
+canvas.circle(x * 74 , y * 78, 9);
+canvas.circle(x * 74 , y * 78, 4);
+canvas.text( x * 74, y * 80, "Base-5");
 
 
-
-
-
+canvas.setLineColor(0,0,0);
 
 
 
 function get_random() { 
-	var output = math.round(math.random()  * 100); 
+	var output = math.round(math.random() * 100); 
  return output;
 }
 
 
-function painter(tower){
-
-
+function painter(){
+	var pos = x / 100  * get_random(); 
+	var direction = math.random()  ;
+	canvas.circle(pos, 0 , 4);
+	while pos != y * 50 do {
+		canvas.shift(direction, 3);
+		print("hello");
+	}
 
 }
 
+
+function controller(key) {
+	print("called");
+
+	if key == "1" then { print("test"); }
+	if key == "2" then { print(get_random()); }
+	if key == "3" then {}
+	if key == "4" then {}
+	if key == "5" then {}
+} 
 
 
 
@@ -47,6 +83,7 @@ function painter(tower){
 
 function onKeyDown(event) {
     controller(event.key);
+	print(event.key);
 }
 setEventHandler("canvas.keydown", onKeyDown);
 enterEventMode();
@@ -58,11 +95,4 @@ setEventHandler("canvas.keyup", onKeyUp);
 enterEventMode();
 
 
-
-function controller(key) {
-	if key == 1 then {}
-	if key == 2 then {}
-	if key == 3 then {}
-	if key == 4 then {}
-	if key == 5 then {}
-} 
+painter();
